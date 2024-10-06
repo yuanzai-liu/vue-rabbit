@@ -6,6 +6,7 @@ import { lazyPlugin } from "@/directives"
 // 引入初始化样式文件
 import "@/styles/common.scss"
 
+import { componentPlugin } from '@/components'
 //  测试接口函数
 // import { getCategory } from './apis/testAPI'
 // getCategory().then(res => {
@@ -17,4 +18,5 @@ const app = createApp(App);
 app.use(createPinia())
 app.use(router)
 app.use(lazyPlugin)
+app.use(componentPlugin)
 app.mount("#app")
