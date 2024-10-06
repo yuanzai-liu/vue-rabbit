@@ -1,20 +1,22 @@
 <script setup>
-import HomePanel from './HomePanel.vue'
-import { findNewAPI } from '@/apis/home'
-import { ref, onMounted } from 'vue'
+import HomePanel from "./HomePanel.vue";
+import { findNewAPI } from "@/apis/home";
+import { ref, onMounted } from "vue";
 
-const newList = ref([])
+const newList = ref([]);
 const getNewList = async () => {
-  const res = await findNewAPI()
-  newList.value = res.result
-}
-onMounted(() => {  getNewList() })
+  const res = await findNewAPI();
+  newList.value = res.result;
+};
+onMounted(() => {
+  getNewList();
+});
 </script>
 
 <template>
   <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质保证">
     <ul class="goods-list">
-    <li v-for="item in newList" :key="item.id">
+      <li v-for="item in newList" :key="item.id">
         <RouterLink :to="`/detail/${item.id}`">
           <img :src="item.picture" alt="" />
           <p class="name">{{ item.name }}</p>
@@ -36,8 +38,7 @@ onMounted(() => {  getNewList() })
   -->
 </template>
 
-
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .goods-list {
   display: flex;
   justify-content: space-between;
@@ -48,7 +49,7 @@ onMounted(() => {  getNewList() })
     height: 406px;
 
     background: #f0f9f4;
-    transition: all .5s;
+    transition: all 0.5s;
 
     &:hover {
       transform: translate3d(0, -3px, 0);

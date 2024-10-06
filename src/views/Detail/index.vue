@@ -1,6 +1,15 @@
 <script setup>
+import { ref, onMounted } from "vue";
+import { getDetail } from "@/apis/detail";
+import { useRoute } from "vue-router";
 
-
+const route = useRoute();
+const goods = ref({});
+const getGoods = async () => {
+  const res = await getDetail(route.params.id);
+  goods.value = res.result;
+};
+onMounted(() => getGoods());
 </script>
 
 <template>
@@ -9,10 +18,11 @@
       <div class="bread-container">
         <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/' }">母婴
+          <el-breadcrumb-item
+            :to="{ path: `/category/${goods.categories[1].id}` }"
+            >{{ goods.categories[1].name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/' }">跑步鞋
-          </el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/' }">跑步鞋 </el-breadcrumb-item>
           <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
@@ -27,7 +37,7 @@
               <ul class="goods-sales">
                 <li>
                   <p>销量人气</p>
-                  <p> 100+ </p>
+                  <p>100+</p>
                   <p><i class="iconfont icon-task-filling"></i>销量人气</p>
                 </li>
                 <li>
@@ -49,8 +59,8 @@
             </div>
             <div class="spec">
               <!-- 商品信息区 -->
-              <p class="g-name"> 抓绒保暖，毛毛虫儿童鞋 </p>
-              <p class="g-desc">好穿 </p>
+              <p class="g-name">抓绒保暖，毛毛虫儿童鞋</p>
+              <p class="g-desc">好穿</p>
               <p class="g-price">
                 <span>200</span>
                 <span> 100</span>
@@ -76,11 +86,8 @@
 
               <!-- 按钮组件 -->
               <div>
-                <el-button size="large" class="btn">
-                  加入购物车
-                </el-button>
+                <el-button size="large" class="btn"> 加入购物车 </el-button>
               </div>
-
             </div>
           </div>
           <div class="goods-footer">
@@ -99,14 +106,11 @@
                     </li>
                   </ul>
                   <!-- 图片 -->
-
                 </div>
               </div>
             </div>
             <!-- 24热榜+专题推荐 -->
-            <div class="goods-aside">
-
-            </div>
+            <div class="goods-aside"></div>
           </div>
         </div>
       </div>
@@ -114,8 +118,7 @@
   </div>
 </template>
 
-
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .xtx-goods-page {
   .goods-info {
     min-height: 600px;
@@ -252,7 +255,7 @@
       flex: 1;
       position: relative;
 
-      ~li::after {
+      ~ li::after {
         position: absolute;
         top: 10px;
         left: 0;
@@ -306,7 +309,7 @@
       font-size: 18px;
       position: relative;
 
-      >span {
+      > span {
         color: $priceColor;
         font-size: 16px;
         margin-left: 10px;
@@ -340,14 +343,13 @@
     }
   }
 
-  >img {
+  > img {
     width: 100%;
   }
 }
 
 .btn {
   margin-top: 20px;
-
 }
 
 .bread-container {

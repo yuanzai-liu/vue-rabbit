@@ -1,23 +1,21 @@
 <script setup>
-
 defineProps({
   // 主标题
   title: {
-    type: String
+    type: String,
   },
   // 副标题
   subTitle: {
-    type: String
-  }
-})
+    type: String,
+  },
+});
 </script>
-
 
 <template>
   <div class="home-panel">
     <div class="container">
       <div class="head">
-         <!-- 主标题和副标题 -->
+        <!-- 主标题和副标题 -->
         <h3>
           {{ title }}<small>{{ subTitle }}</small>
         </h3>
@@ -28,7 +26,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .home-panel {
   background-color: #fff;
 

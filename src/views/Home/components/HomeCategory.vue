@@ -1,8 +1,7 @@
 <script setup>
-import { useCategoryStore } from '@/stores/category'
+import { useCategoryStore } from "@/stores/category";
 
-const categoryStore = useCategoryStore()
-
+const categoryStore = useCategoryStore();
 </script>
 
 <template>
@@ -10,7 +9,9 @@ const categoryStore = useCategoryStore()
     <ul class="menu">
       <li v-for="item in categoryStore.categoryList" :key="item.id">
         <RouterLink to="/">{{ item.name }}</RouterLink>
-        <RouterLink v-for="i in item.children.slice(0,2)" :key="i" to="/"> {{ i.name }}</RouterLink>
+        <RouterLink v-for="i in item.children.slice(0, 2)" :key="i" to="/">
+          {{ i.name }}</RouterLink
+        >
         <!-- 弹层layer位置 -->
         <div class="layer">
           <h4>分类推荐 <small>根据您的购买或浏览记录推荐</small></h4>
@@ -34,8 +35,7 @@ const categoryStore = useCategoryStore()
   </div>
 </template>
 
-
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .home-category {
   width: 250px;
   height: 500px;
