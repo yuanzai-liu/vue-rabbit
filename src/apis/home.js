@@ -29,7 +29,7 @@ export const findNewAPI = () => {
  */
 export const getHotAPI = () => {
   return httpInstance({
-    url: "home/hot",
+    url: "/home/hot",
   });
 };
 
