@@ -40,10 +40,13 @@ const addCart = () => {
       skuId: sukObj.skuId,
       attrsText: sukObj.specsText,
       selected: true
-    }) 
+    },
+    ElMessage.success('添加成功')
+  ) 
   }else{
      ElMessage.warning('请选择规格')
   }
+  
 }
 </script>
 
