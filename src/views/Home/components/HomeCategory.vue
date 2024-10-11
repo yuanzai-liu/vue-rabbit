@@ -8,7 +8,7 @@ const categoryStore = useCategoryStore();
   <div class="home-category">
     <ul class="menu">
       <li v-for="item in categoryStore.categoryList" :key="item.id">
-        <RouterLink to="/">{{ item.name }}</RouterLink>
+        <RouterLink :to="`/detail/${item.id}`">{{ item.name }}</RouterLink>
         <RouterLink v-for="i in item.children.slice(0, 2)" :key="i" to="/">
           {{ i.name }}</RouterLink
         >
