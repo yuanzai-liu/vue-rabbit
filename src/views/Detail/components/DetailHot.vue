@@ -1,6 +1,6 @@
 <script setup>
 // 以24小时热榜获取数据渲染模板
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted, computed,watch } from "vue"
 import { getHotGoodsAPI } from "@/apis/detail"
 import { useRoute } from "vue-router"
 
@@ -30,6 +30,12 @@ const getHotList = async () => {
 onMounted(() => {
   getHotList()
 })
+watch(
+  () => route.params.id,
+  () => {
+    location.reload()
+  }
+);
 </script>
 
 
@@ -37,7 +43,7 @@ onMounted(() => {
   <div class="goods-hot">
     <h3>{{ title }}</h3>
     <!-- 商品区块 -->
-    <RouterLink to="/" class="goods-item" v-for="item in hotList" :key="item.id">
+    <RouterLink :to="`/detail/${item.id}`" class="goods-item" v-for="item in hotList" :key="item.id">
       <img :src="item.picture" alt="" />
       <p class="name ellipsis">{{ item.name }}</p>
       <p class="desc ellipsis">{{ item.desc }}</p>
