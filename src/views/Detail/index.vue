@@ -12,7 +12,7 @@ const route = useRoute()
 const goods = ref({})
 const getGoods = async () => {
   const res = await getDetail(route.params.id)
-  goods.value = res.result
+  goods.value = res.result 
 }
 onMounted(() => getGoods())
 
@@ -46,7 +46,6 @@ const addCart = () => {
   }else{
      ElMessage.warning('请选择规格')
   }
-  
 }
 </script>
 
@@ -56,6 +55,7 @@ const addCart = () => {
       <div class="bread-container">
         <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          
           <!-- 错误原因：goods一开始是个空对象 -->
           <el-breadcrumb-item
             :to="{ path: `/category/${goods.categories[1].id}` }"
@@ -65,7 +65,7 @@ const addCart = () => {
             :to="{ path: `/category/sub/${goods.categories[0].id}` }">
               {{ goods.categories[0].name }} 
           </el-breadcrumb-item>
-          <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- 商品信息 -->

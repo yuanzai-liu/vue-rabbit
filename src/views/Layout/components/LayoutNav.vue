@@ -1,5 +1,6 @@
 <script setup>
 import { useUserStore } from '@/stores/userStore'
+import { RouterLink } from 'vue-router';
 import { useRouter } from 'vue-router'
 const userStore = useUserStore()
 const router = useRouter()
@@ -16,7 +17,7 @@ const comfirm = () => {
       <ul>
         <template v-if="userStore.userInfo.token">
           <li>
-            <a href="javascript:;"><i class="iconfont icon-user"></i>{{ userStore.userInfo.account }}</a>
+            <RouterLink to="/member"><i class="iconfont icon-user"></i>{{ userStore.userInfo.account }}</RouterLink>
           </li>
           <li>
             <el-popconfirm
@@ -30,8 +31,8 @@ const comfirm = () => {
               </template>
             </el-popconfirm>
           </li>
-          <li><a href="javascript:;">我的订单</a></li>
-          <li><a href="javascript:;">会员中心</a></li>
+          <li><RouterLink to="/member/order">我的订单</RouterLink></li>
+          <li><RouterLink to="/member">会员中心</RouterLink></li>
         </template>
         <template v-else>
           <li><a href="javascript:;" @click="$router.push('/login')">请先登录</a></li>
